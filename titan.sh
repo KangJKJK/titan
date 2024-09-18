@@ -46,14 +46,14 @@ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib
 echo -e "${YELLOW}해당 사이트에 방문하여 식별코드를 얻으세요: ${NC}"
 echo -e "${YELLOW}https://titannet.gitbook.io/titan-network-en/resource-network-test/bind-the-identity-code${NC}"
 
-# 10. 사용자로부터 식별 코드 입력 받기
+# 9. 사용자로부터 식별 코드 입력 받기
 read -p "$(echo -e ${YELLOW}식별 코드를 입력하세요: ${NC})" identifier
 
-# 11. 바인드 명령 실행
+# 10. 바인드 명령 실행
 echo -e "${YELLOW}바인드 명령을 실행합니다...${NC}"
 titan-edge bind --hash="$identifier" https://api-test1.container1.titannet.io/api/v2/device/binding
 
-# 8. 데몬 시작
+# 11.데몬 시작
 echo -e "${YELLOW}titan-edge 데몬을 시작합니다...컨트롤 A+D로 스크린을 종료해주세요${NC}"
 echo -e "${GREEN}스크립트 작성자: https://t.me/kjkresearch${NC}"
 titan-edge daemon start --init --url https://cassini-locator.titannet.io:5000/rpc/v0
