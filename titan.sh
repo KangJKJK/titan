@@ -42,10 +42,6 @@ sudo cp libgoworkerd.so /usr/local/lib
 echo -e "${YELLOW}환경 변수를 설정합니다...${NC}"
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib
 
-# 8. 데몬 시작
-echo -e "${YELLOW}titan-edge 데몬을 시작합니다...${NC}"
-titan-edge daemon start --init --url https://cassini-locator.titannet.io:5000/rpc/v0
-
 # 8. 식별코드 얻기
 echo -e "${YELLOW}해당 사이트에 방문하여 식별코드를 얻으세요: ${NC}"
 echo -e "${YELLOW}https://titannet.gitbook.io/titan-network-en/resource-network-test/bind-the-identity-code${NC}"
@@ -57,5 +53,7 @@ read -p "$(echo -e ${YELLOW}식별 코드를 입력하세요: ${NC})" identifier
 echo -e "${YELLOW}바인드 명령을 실행합니다...${NC}"
 titan-edge bind --hash="$identifier" https://api-test1.container1.titannet.io/api/v2/device/binding
 
-echo -e "${GREEN}모든 작업이 완료되었습니다. 컨트롤+A+D로 스크린을 종료해주세요.${NC}"
+# 8. 데몬 시작
+echo -e "${YELLOW}titan-edge 데몬을 시작합니다...컨트롤 A+D로 스크린을 종료해주세요${NC}"
 echo -e "${GREEN}스크립트 작성자: https://t.me/kjkresearch${NC}"
+titan-edge daemon start --init --url https://cassini-locator.titannet.io:5000/rpc/v0
