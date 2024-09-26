@@ -53,6 +53,17 @@ read -p "$(echo -e ${YELLOW}식별 코드를 입력하세요: ${NC})" identifier
 echo -e "${YELLOW}바인드 명령을 실행합니다...${NC}"
 titan-edge bind --hash="$identifier" https://api-test1.container1.titannet.io/api/v2/device/binding
 
+# 현재 사용 중인 포트 확인
+used_ports=$(netstat -tuln | awk '{print $4}' | grep -o '[0-9]*$' | sort -u)
+
+# 각 포트에 대해 ufw allow 실행
+for port in $used_ports; do
+    echo -e "${GREEN}포트 ${port}을(를) 허용합니다.${NC}"
+    sudo ufw allow $port
+done
+
+echo -e "${GREEN}모든 사용 중인 포트가 허용되었습니다.${NC}"
+
 # 11.데몬 시작
 echo -e "${YELLOW}titan-edge 데몬을 시작합니다...컨트롤 A+D로 스크린을 종료해주세요${NC}"
 echo -e "${GREEN}스크립트 작성자: https://t.me/kjkresearch${NC}"
