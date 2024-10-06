@@ -15,6 +15,7 @@ if [ -d "$DIR_NAME" ]; then
     echo -e "${YELLOW}기존 작업 디렉토리를 삭제합니다...${NC}"
     rm -rf "$DIR_NAME"
 fi
+sudo rm /usr/local/bin/titan-edge
 
 # 2. 기존 패키지 삭제
 if [ -f "$PACKAGE_NAME" ]; then
