@@ -69,4 +69,3 @@ echo -e "${GREEN}모든 사용 중인 포트가 허용되었습니다.${NC}"
 echo -e "${YELLOW}titan-edge 데몬을 시작합니다...컨트롤 A+D로 스크린을 종료해주세요${NC}"
 echo -e "${GREEN}스크립트 작성자: https://t.me/kjkresearch${NC}"
 titan-edge daemon start --init --url https://cassini-locator.titannet.io:5000/rpc/v0
-
