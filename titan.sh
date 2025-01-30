@@ -50,6 +50,10 @@ echo -e "${YELLOW}https://titannet.gitbook.io/titan-network-en/resource-network-
 # 9. 사용자로부터 식별 코드 입력 받기
 read -p "$(echo -e ${YELLOW}식별 코드를 입력하세요: ${NC})" identifier
 
+# config.toml 포트 변경
+echo -e "${YELLOW}config.toml 파일의 포트를 1235로 변경합니다...${NC}"
+sed -i 's/ListenAddress = "0.0.0.0:1234"/ListenAddress = "0.0.0.0:1235"/' /root/.titanedge/config.toml
+
 # 10. 바인드 명령 실행
 echo -e "${YELLOW}바인드 명령을 실행합니다...${NC}"
 titan-edge bind --hash="$identifier" https://api-test1.container1.titannet.io/api/v2/device/binding
