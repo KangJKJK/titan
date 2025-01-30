@@ -39,25 +39,36 @@ echo -e "${YELLOW}파일을 복사합니다...${NC}"
 sudo cp titan-edge /usr/local/bin
 sudo cp libgoworkerd.so /usr/local/lib
 
-# 7. 환경 변수 설정
+# 7. 빌드
+sudo apt update
+chmod +x build_linux.sh
+./build_linux.sh
+
+# 8. 바이너리 파일 복사 및 권한 설정
+sudo cp build/titan-edge /usr/local/bin/
+sudo chmod +x /usr/local/bin/titan-edge
+sudo cp build/libgoworkerd.so /usr/local/lib/
+
+# 9. 환경 변수 설정
 echo -e "${YELLOW}환경 변수를 설정합니다...${NC}"
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib
+source ~/.bashrc
 
-# 8. 식별코드 얻기
+# 10. 식별코드 얻기
 echo -e "${YELLOW}해당 사이트에 방문하여 식별코드를 얻으세요: ${NC}"
 echo -e "${YELLOW}https://titannet.gitbook.io/titan-network-en/resource-network-test/bind-the-identity-code${NC}"
 
-# 9. 사용자로부터 식별 코드 입력 받기
+# 11. 사용자로부터 식별 코드 입력 받기
 read -p "$(echo -e ${YELLOW}식별 코드를 입력하세요: ${NC})" identifier
 
-# 10. 바인드 명령 실행
+# 12. 바인드 명령 실행
 echo -e "${YELLOW}바인드 명령을 실행합니다...${NC}"
 titan-edge bind --hash="$identifier" https://api-test1.container1.titannet.io/api/v2/device/binding
 
-# 현재 사용 중인 포트 확인
+# 13.현재 사용 중인 포트 확인
 used_ports=$(netstat -tuln | awk '{print $4}' | grep -o '[0-9]*$' | sort -u)
 
-# 각 포트에 대해 ufw allow 실행
+# 14.각 포트에 대해 ufw allow 실행
 for port in $used_ports; do
     echo -e "${GREEN}포트 ${port}을(를) 허용합니다.${NC}"
     sudo ufw allow $port
@@ -65,7 +76,7 @@ done
 
 echo -e "${GREEN}모든 사용 중인 포트가 허용되었습니다.${NC}"
 
-# 11.데몬 시작
+# 15.데몬 시작
 echo -e "${YELLOW}titan-edge 데몬을 시작합니다...컨트롤 A+D로 스크린을 종료해주세요${NC}"
 echo -e "${GREEN}스크립트 작성자: https://t.me/kjkresearch${NC}"
 titan-edge daemon start --init --url https://cassini-locator.titannet.io:5000/rpc/v0
