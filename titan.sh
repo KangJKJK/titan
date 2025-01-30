@@ -14,6 +14,7 @@ DIR_NAME="titan-edge_v0.1.20_246b9dd_linux-amd64"
 echo -e "${YELLOW}설치 과정을 선택하세요:${NC}"
 echo -e "1) Edge 노드 설치"
 echo -e "2) Galileo 노드 설치"
+echo -e "${YELLOW}두가지 노드 모두 구동해주세요.${NC}"
 read -p "번호를 선택하세요 (1 또는 2): " install_choice
 
 if [ "$install_choice" = "1" ]; then
