@@ -39,16 +39,6 @@ echo -e "${YELLOW}파일을 복사합니다...${NC}"
 sudo cp titan-edge /usr/local/bin
 sudo cp libgoworkerd.so /usr/local/lib
 
-# 7. 빌드
-sudo apt update
-chmod +x build_linux.sh
-./build_linux.sh
-
-# 8. 바이너리 파일 복사 및 권한 설정
-sudo cp build/titan-edge /usr/local/bin/
-sudo chmod +x /usr/local/bin/titan-edge
-sudo cp build/libgoworkerd.so /usr/local/lib/
-
 # 9. 환경 변수 설정
 echo -e "${YELLOW}환경 변수를 설정합니다...${NC}"
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib
