@@ -7,8 +7,8 @@ YELLOW='\033[1;33m'
 NC='\033[0m' # 색상 초기화
 
 # 변수 정의
-PACKAGE_NAME="titan-edge_v0.1.20_246b9dd_linux-amd64.tar.gz"
-DIR_NAME="titan-edge_v0.1.20_246b9dd_linux-amd64"
+PACKAGE_NAME="v0.1.21.tar.gz"
+DIR_NAME="titan-node-0.1.21"
 
 # 1. 기존 작업 디렉토리 삭제
 if [ -d "$DIR_NAME" ]; then
@@ -25,7 +25,7 @@ fi
 
 # 3. 패키지 다운로드
 echo -e "${YELLOW}패키지를 다운로드합니다...${NC}"
-wget https://github.com/Titannet-dao/titan-node/releases/download/v0.1.20/titan-edge_v0.1.20_246b9dd_linux-amd64.tar.gz
+wget https://github.com/Titannet-dao/titan-node/archive/refs/tags/v0.1.21.tar.gz
 
 # 4. 다운로드한 파일 압축 해제
 echo -e "${YELLOW}패키지를 추출합니다...${NC}"
