@@ -91,14 +91,19 @@ elif [ "$install_choice" = "2" ]; then
     echo -e "${YELLOW}[Galileo 노드 설치를 시작합니다]${NC}"
 
     echo -e "${GREEN}필수 패키지를 설치합니다.${NC}"
-    apt update && apt install snapd
+    sudo apt update && sudo apt install -y snapd unzip wget
     sudo systemctl enable --now snapd.socket
     sudo snap install multipass
 
     echo -e "${GREEN}패키지를 설치합니다.${NC}"
     wget https://pcdn.titannet.io/test4/bin/agent-linux.zip
-    mkdir -p /opt/titanagent
-    unzip agent-linux.zip -d /opt/titanagent
+    sudo mkdir -p /opt/titanagent
+    sudo unzip -o agent-linux.zip -d /opt/titanagent
+    
+    # apps 디렉토리 생성 및 권한 설정
+    sudo mkdir -p /opt/titanagent/apps
+    sudo touch /opt/titanagent/apps/config.json
+    sudo chmod -R 755 /opt/titanagent
 
     # 식별코드 얻기
     echo -e "${YELLOW}해당 사이트에 방문하여 식별코드를 얻으세요: ${NC}"
