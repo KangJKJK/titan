@@ -51,8 +51,12 @@ echo -e "${YELLOW}https://titannet.gitbook.io/titan-network-en/resource-network-
 read -p "$(echo -e ${YELLOW}식별 코드를 입력하세요: ${NC})" identifier
 
 # config.toml 포트 변경
-echo -e "${YELLOW}config.toml 파일의 포트를 1235로 변경합니다...${NC}"
+echo -e "${YELLOW}config.toml 파일의 포트를 1235로 변경합니다.${NC}"
 sed -i 's/ListenAddress = "0.0.0.0:1234"/ListenAddress = "0.0.0.0:1235"/' /root/.titanedge/config.toml
+
+# 바이너리에서 1234 포트를 1235로 변경
+echo -e "${YELLOW}titan-edge 바이너리에서 포트를 1235로 변경합니다.${NC}"
+sed -i 's/0.0.0.0:1234/0.0.0.0:1235/g' /usr/local/bin/titan-edge
 
 # 10. 바인드 명령 실행
 echo -e "${YELLOW}바인드 명령을 실행합니다...${NC}"
