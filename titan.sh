@@ -103,6 +103,9 @@ elif [ "$install_choice" = "2" ]; then
     # apps 디렉토리 생성 및 권한 설정
     sudo mkdir -p /opt/titanagent/apps
     sudo touch /opt/titanagent/apps/config.json
+
+    # config.json에 기본 JSON 구조 추가
+    echo '{"apps":[]}' | sudo tee /opt/titanagent/apps/config.json
     sudo chmod -R 755 /opt/titanagent
 
     # 식별코드 얻기
