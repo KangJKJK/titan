@@ -114,16 +114,7 @@ elif [ "$install_choice" = "2" ]; then
     sudo mkdir -p /opt/titanagent/apps
     
     # config.json 파일 생성 및 올바른 JSON 구조 설정
-    sudo bash -c 'cat > /opt/titanagent/apps/config.json << EOL
-[
-    {
-        "name": "",
-        "version": "",
-        "status": "",
-        "config": {}
-    }
-]
-EOL'
+    sudo bash -c 'echo "[]" > /opt/titanagent/apps/config.json'
 
     # 권한 설정
     sudo chmod 644 /opt/titanagent/apps/config.json
