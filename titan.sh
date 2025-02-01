@@ -100,12 +100,28 @@ elif [ "$install_choice" = "2" ]; then
     sudo mkdir -p /opt/titanagent
     sudo unzip -o agent-linux.zip -d /opt/titanagent
     
-    # apps 디렉토리 생성 및 권한 설정
+    # 기존 titanagent 폴더가 있다면 삭제
+    if [ -d "/opt/titanagent" ]; then
+        echo -e "${YELLOW}기존 titanagent 폴더를 삭제합니다...${NC}"
+        sudo rm -rf /opt/titanagent
+    fi
+    
+    wget https://pcdn.titannet.io/test4/bin/agent-linux.zip
+    sudo mkdir -p /opt/titanagent
+    sudo unzip -o agent-linux.zip -d /opt/titanagent
+    
+    # apps 디렉토리 생성
     sudo mkdir -p /opt/titanagent/apps
-    sudo touch /opt/titanagent/apps/config.json
-
-    # config.json에 기본 JSON 구조 추가
-    echo '{"apps":[]}' | sudo tee /opt/titanagent/apps/config.json
+    
+    # config.json 파일 생성 및 올바른 JSON 구조 설정
+    sudo bash -c 'cat > /opt/titanagent/apps/config.json << EOL
+{
+    "apps": []
+}
+EOL'
+    
+    # 권한 설정
+    sudo chmod 644 /opt/titanagent/apps/config.json
     sudo chmod -R 755 /opt/titanagent
 
     # 식별코드 얻기
